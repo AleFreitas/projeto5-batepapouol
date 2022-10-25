@@ -1,0 +1,19 @@
+header{
+    position:fixed;
+    top:0px;
+    left:0px;
+    height: 80px;
+    width: 100%;
+    background-color: #ffffff;
+    display:flex !important;
+    justify-content:space-between;
+    align-items:center;
+}
+header img{
+    height: 53px;
+    width: 75px;
+    margin-left:5%;
+}header ion-icon{
+    font-size:45px;
+    margin-right:5%;
+}
