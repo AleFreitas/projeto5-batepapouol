@@ -12,4 +12,10 @@ footer{
 footer ion-icon{
     font-size:30px;
     margin-right:5%;
+}footer input{
+    border:none;
+}::placeholder {
+    color: #000000;
+    font-size:40px;
+    opacity: 1;
 }
