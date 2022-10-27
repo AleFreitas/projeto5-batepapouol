@@ -4,18 +4,27 @@ section{
     height:100%;
     width: 100%;
     background-color: #f3f3f3;
-}.inOut{
-    height: 40px;
+    overflow:scroll;
+}.message{
+    max-height:60px;
     width: 100%;
-    display:flex;
+    display: flex;
     text-align: left;
-    align-items:center;
-    background-color:#dcdcdc;
+    align-items: center;
     font-family: 'Roboto',sans-serif;
     font-size: 14px;
     font-weight: 400;
     text-align: left;
-    margin-bottom:4px;
+    margin-bottom: 4px;
+    line-height: 16px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}.status{
+    background-color:#dcdcdc;
+}.normal-message{
+    background-color:#ffffff;
+}.private-message{
+    background-color: #ffdede;
 }.time{
     font-family: 'Roboto',sans-serif;
     font-size: 14px;
