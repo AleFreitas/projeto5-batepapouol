@@ -4,7 +4,6 @@ let messageHtml = ""
 let lastMessage = 0
 postUserName()
 function postUserName() {
-    console.log(userName)
     //tenta postar o nome do usuário
     user = { name: userName }
     const promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants", user)
@@ -62,20 +61,30 @@ function buildMessages(response){
             </div>
             `;
         }
-        console.log(messageHtml)
         lastMessage = i;
     }
     showMessages();
 }
 function showMessages(){
     section.innerHTML=messageHtml
-    console.log(messageHtml)
     let showThisMessage = document.querySelector(".message"+lastMessage);
     showThisMessage.scrollIntoView();
 }
 function didntFindMessages(response){
-    alert("Não foi possivel obter as mensagens")
+    alert("Não foi possivel obter as mensagens do servidor")
 }
 function getUsers() {
     //retorna os usuários ativos
+}
+function sendMessageToAll(){
+    inputValue = document.querySelector("textarea");
+    messageText = inputValue.value;
+    console.log(messageText);
+    userMessage = {from:userName,to:"Todos",text:messageText,type:"message"}
+    message = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages",userMessage);
+    message.catch(didntSendMessage);
+    inputValue.value = "";
+}
+function didntSendMessage(){
+    alert("Não foi possivel enviar a mensagem")
 }
