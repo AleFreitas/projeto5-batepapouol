@@ -19,6 +19,7 @@ section{
     line-height: 16px;
     padding-top: 12px;
     padding-bottom: 12px;
+    overflow:scroll;
 }.status{
     background-color:#dcdcdc;
 }.normal-message{
