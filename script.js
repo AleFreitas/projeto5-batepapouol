@@ -1,9 +1,17 @@
 let userName = prompt("Insira seu nome de usuário");
-const section = document.querySelector("section")
+const section = document.querySelector("section");
+const userSection = document.querySelector(".contact-list");
 const inputValue = document.querySelector("textarea");
+
+//contains all users online in a html format
+let userList = "";
+//contains all messages from server in a html format
 let messageHtml = "";
+//contains the last message position
 let lastMessage = 0;
+//check if the program should scroll messages to the bottom or not
 let scrollMessages = true;
+
 postUserName()
 function postUserName() {
     //tenta postar o nome do usuário
@@ -18,9 +26,14 @@ function userDontExists(){
     setInterval(function(){
         const keepUser = axios.post("https://mock-api.driven.com.br/api/v6/uol/status",user)
     },5000)
+    //get messages every 3 seconds
     setInterval(function(){
         let messageHtml = ""
         getMessages();
+    },3000)
+    //get users every 3 seconds
+    setInterval(function(){
+        getUsers();
     },3000)
 }
 function userAlreadyExists() {
@@ -78,13 +91,46 @@ function showMessages(){
 function didntFindMessages(response){
     alert("Não foi possivel obter as mensagens do servidor")
 }
-function getUsers() {
-    //retorna os usuários ativos
-}
 function sendMessageToAll(){
     messageText = inputValue.value;
     userMessage = {from:userName,to:"Todos",text:messageText,type:"message"}
     const message = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages",userMessage);
     inputValue.value = "";
     scrollMessages = true;
+}
+function getUsers() {
+    //retorna os usuários ativos
+    const users = axios.get("https://mock-api.driven.com.br/api/v6/uol/participants");
+    users.then(buildUsersList);
+}
+function buildUsersList(response){
+    userList=`
+    <div class="contact">
+        <button class="contact-button">
+            <ion-icon name="people"></ion-icon>
+            <p>
+                Todos
+            </p>
+        </button>
+        <ion-icon class="check hidden" name="checkmark-sharp"></ion-icon>
+    </div>
+    `
+    for (i=0;i<response.data.length;i++){
+        userList+=`
+        <div class="contact">
+            <button class="contact-button">
+                <ion-icon name="person-circle"></ion-icon>
+                <p>
+                    ${response.data[i].name}
+                </p>
+            </button>
+            <ion-icon class="check hidden" name="checkmark-sharp"></ion-icon>
+        </div>
+        `
+    }
+    showUsers()
+}
+function showUsers(){
+    userSection.innerHTML=userList
+
 }
