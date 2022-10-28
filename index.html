@@ -12,6 +12,7 @@
         <link href="reset.css" rel="stylesheet">
         <link href="section.css" rel="stylesheet">
         <link href="footer.css" rel="stylesheet">
+        <link href="sidemenu.css" rel="stylesheet">
         <style>
             body{
                 height:100vh;
@@ -35,6 +36,47 @@
                 <ion-icon name="paper-plane-outline"></ion-icon>
             </button>
         </footer>
+        <div class="sidemenu-back hidden">
+            <section class="sidemenu">
+                <p>
+                    Escolha um contato para enviar mensagem:
+                </p>
+                <section class="contact-list">
+                    <div class="contact">
+                        <button class="contact-button">
+                            <ion-icon name="people"></ion-icon>
+                            <p>
+                                Todos
+                            </p>
+                        </button>
+                        <ion-icon class="check hidden" name="checkmark-sharp"></ion-icon>
+                    </div>
+                </section>
+                <p>
+                    Escolha a visibilidade:
+                </p>
+                <section>
+                    <div class="privacy-option">
+                        <button class="privacy-button">
+                            <ion-icon name="lock-open"></ion-icon>
+                            <p>
+                                Público
+                            </p>
+                        </button>
+                        <ion-icon class="check" name="checkmark-sharp"></ion-icon>
+                    </div>
+                    <div class="privacy-option">
+                        <button class="privacy-button">
+                            <ion-icon name="lock-closed"></ion-icon>
+                            <p>
+                                Reservadamente
+                            </p>
+                        </button>
+                        <ion-icon class="check hidden" name="checkmark-sharp"></ion-icon>
+                    </div>
+                </section>
+            </section>
+        </div>
         <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	    <script src="script.js"></script>
