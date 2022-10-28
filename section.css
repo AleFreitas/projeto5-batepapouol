@@ -6,7 +6,8 @@ section{
     background-color: #f3f3f3;
     overflow:scroll;
 }.message{
-    max-height:60px;
+    max-height:600px;
+    max-width:100%;
     width: 100%;
     display: flex;
     text-align: left;
@@ -19,7 +20,7 @@ section{
     line-height: 16px;
     padding-top: 12px;
     padding-bottom: 12px;
-    overflow:scroll;
+    overflow-y:scroll;
 }.status{
     background-color:#dcdcdc;
 }.normal-message{

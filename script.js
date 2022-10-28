@@ -1,7 +1,9 @@
 let userName = prompt("Insira seu nome de usuário");
 const section = document.querySelector("section")
-let messageHtml = ""
-let lastMessage = 0
+const inputValue = document.querySelector("textarea");
+let messageHtml = "";
+let lastMessage = 0;
+let scrollMessages = true;
 postUserName()
 function postUserName() {
     //tenta postar o nome do usuário
@@ -68,7 +70,10 @@ function buildMessages(response){
 function showMessages(){
     section.innerHTML=messageHtml
     let showThisMessage = document.querySelector(".message"+lastMessage);
-    showThisMessage.scrollIntoView();
+    if(scrollMessages === true){
+        scrollMessages = false;
+        showThisMessage.scrollIntoView();
+    }
 }
 function didntFindMessages(response){
     alert("Não foi possivel obter as mensagens do servidor")
@@ -77,14 +82,9 @@ function getUsers() {
     //retorna os usuários ativos
 }
 function sendMessageToAll(){
-    inputValue = document.querySelector("textarea");
     messageText = inputValue.value;
-    console.log(messageText);
     userMessage = {from:userName,to:"Todos",text:messageText,type:"message"}
-    message = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages",userMessage);
-    message.catch(didntSendMessage);
+    const message = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages",userMessage);
     inputValue.value = "";
-}
-function didntSendMessage(){
-    alert("Não foi possivel enviar a mensagem")
+    scrollMessages = true;
 }

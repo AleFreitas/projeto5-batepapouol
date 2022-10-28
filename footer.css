@@ -25,4 +25,12 @@ footer ion-icon{
 }::placeholder {
     color: #000000;
     opacity: 1;
+}footer button{
+    border:none;
+    background-color: #ffffff;
+    transition: width 1s,height 1s,background-color 1s;
+}footer button :hover{
+    width:35px;
+    height:35px;
+    border-color: #e6e5e5;
 }
