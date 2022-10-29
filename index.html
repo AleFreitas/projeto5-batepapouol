@@ -26,7 +26,7 @@
     <body>
         <header>
             <img src="logo.png" alt="logo">
-            <ion-icon name="people"></ion-icon>
+            <ion-icon onclick="toggleSideMenu()" name="people"></ion-icon>
         </header>
         <section>
         </section>
@@ -37,42 +37,44 @@
             </button>
         </footer>
         <div class="sidemenu-back hidden">
+            <div class="sidemenu-back-empty" onclick="toggleSideMenu()">
+            </div>
             <section class="sidemenu">
                 <p>
                     Escolha um contato para enviar mensagem:
                 </p>
                 <section class="contact-list">
-                    <div class="contact">
+                    <div class="contact Todos selected" onclick="selectContact(this)">
                         <button class="contact-button">
                             <ion-icon name="people"></ion-icon>
                             <p>
                                 Todos
                             </p>
                         </button>
-                        <ion-icon class="check hidden" name="checkmark-sharp"></ion-icon>
+                        <ion-icon class="check" name="checkmark-sharp"></ion-icon>
                     </div>
                 </section>
                 <p>
                     Escolha a visibilidade:
                 </p>
                 <section>
-                    <div class="privacy-option">
+                    <div class="privacy-option" onclick="togglePrivacy('public')">
                         <button class="privacy-button">
                             <ion-icon name="lock-open"></ion-icon>
                             <p>
                                 Público
                             </p>
                         </button>
-                        <ion-icon class="check" name="checkmark-sharp"></ion-icon>
+                        <ion-icon class="check public" name="checkmark-sharp"></ion-icon>
                     </div>
-                    <div class="privacy-option">
+                    <div class="privacy-option" onclick="togglePrivacy('private')">
                         <button class="privacy-button">
                             <ion-icon name="lock-closed"></ion-icon>
                             <p>
                                 Reservadamente
                             </p>
                         </button>
-                        <ion-icon class="check hidden" name="checkmark-sharp"></ion-icon>
+                        <ion-icon class="check hidden private" name="checkmark-sharp"></ion-icon>
                     </div>
                 </section>
             </section>

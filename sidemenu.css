@@ -8,6 +8,12 @@
 
 }.sidemenu-back ion-icon{
     font-size:25px;
+}.sidemenu-back-empty{
+    position:fixed;
+    width:30%;
+    top:0px;
+    left:0px;
+    height:100vh;
 }.sidemenu{
     position:fixed;
     top:0px;
@@ -42,6 +48,8 @@
 }.contact,.privacy-option{
     display:flex;
     width:100%;
+}.contact .check{
+    display:none;
 }
 .contact-button,.privacy-button{
     width:100%;
@@ -53,4 +61,6 @@
     background-color: #ffffff;
 }.check{
     color:#28BB25;
+}.selected .check{
+    display:block;
 }

@@ -1,8 +1,15 @@
 let userName = prompt("Insira seu nome de usuário");
+const choosePublic = document.querySelector(".public");
+const choosePrivate = document.querySelector(".private");
 const section = document.querySelector("section");
 const userSection = document.querySelector(".contact-list");
+const sideMenu = document.querySelector(".sidemenu-back");
 const inputValue = document.querySelector("textarea");
 
+//contains who will receive this message
+let receiver = "Todos";
+//contains message privacy value
+let messagePrivacy = "public";
 //contains all users online in a html format
 let userList = "";
 //contains all messages from server in a html format
@@ -11,6 +18,8 @@ let messageHtml = "";
 let lastMessage = 0;
 //check if the program should scroll messages to the bottom or not
 let scrollMessages = true;
+//contains the html element of the previous selected contact
+let previousContact = document.querySelector(".contact.Todos")
 
 postUserName()
 function postUserName() {
@@ -93,7 +102,11 @@ function didntFindMessages(response){
 }
 function sendMessageToAll(){
     messageText = inputValue.value;
-    userMessage = {from:userName,to:"Todos",text:messageText,type:"message"}
+    if(messagePrivacy === "public"){
+        userMessage = {from:userName,to:"Todos",text:messageText,type:"message"}
+    }else{
+        userMessage = {from:userName,to:"Todos",text:messageText,type:"private_message"}
+    }
     const message = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages",userMessage);
     inputValue.value = "";
     scrollMessages = true;
@@ -104,33 +117,85 @@ function getUsers() {
     users.then(buildUsersList);
 }
 function buildUsersList(response){
-    userList=`
-    <div class="contact">
-        <button class="contact-button">
-            <ion-icon name="people"></ion-icon>
-            <p>
-                Todos
-            </p>
-        </button>
-        <ion-icon class="check hidden" name="checkmark-sharp"></ion-icon>
-    </div>
-    `
-    for (i=0;i<response.data.length;i++){
-        userList+=`
-        <div class="contact">
+    if(receiver === "Todos"){
+        userList=`
+        <div class="contact Todos selected" onclick="selectContact(this,'Todos')">
             <button class="contact-button">
-                <ion-icon name="person-circle"></ion-icon>
+                <ion-icon name="people"></ion-icon>
                 <p>
-                    ${response.data[i].name}
+                    Todos
                 </p>
             </button>
-            <ion-icon class="check hidden" name="checkmark-sharp"></ion-icon>
+            <ion-icon class="check" name="checkmark-sharp"></ion-icon>
         </div>
         `
+    }else{
+        userList=`
+        <div class="contact Todos" onclick="selectContact(this,'Todos')">
+            <button class="contact-button">
+                <ion-icon name="people"></ion-icon>
+                <p>
+                    Todos
+                </p>
+            </button>
+            <ion-icon class="check" name="checkmark-sharp"></ion-icon>
+        </div>
+        `
+    }
+    for (i=0;i<response.data.length;i++){
+        if(receiver === response.data[i].name){
+            userList+=`
+            <div class="contact ${response.data[i].name} selected" onclick="selectContact(this,'${response.data[i].name}')">
+                <button class="contact-button">
+                    <ion-icon name="person-circle"></ion-icon>
+                    <p>
+                        ${response.data[i].name}
+                    </p>
+                </button>
+                <ion-icon class="check hidden" name="checkmark-sharp"></ion-icon>
+            </div>
+            `
+        }else{
+            userList+=`
+            <div class="contact ${response.data[i].name}" onclick="selectContact(this,'${response.data[i].name}')">
+                <button class="contact-button">
+                    <ion-icon name="person-circle"></ion-icon>
+                    <p>
+                        ${response.data[i].name}
+                    </p>
+                </button>
+                <ion-icon class="check hidden" name="checkmark-sharp"></ion-icon>
+            </div>
+            `
+        }
     }
     showUsers()
 }
 function showUsers(){
     userSection.innerHTML=userList
 
+}
+function toggleSideMenu(){
+    sideMenu.classList.toggle("hidden")
+}
+function togglePrivacy(type){
+    if(type === "public"){
+        messagePrivacy = "public"
+        choosePublic.classList.toggle("hidden")
+        choosePrivate.classList.toggle("hidden")
+    }else{
+        messagePrivacy = "private"
+        choosePublic.classList.toggle("hidden")
+        choosePrivate.classList.toggle("hidden")
+    }
+}
+function selectContact(element,receiverName){
+    if(previousContact !== element){
+        console.log(previousContact)
+        console.log(previousContact.classList)
+        previousContact.classList.toggle("selected")
+        element.classList.toggle("selected");
+        previousContact = element;
+        receiver = receiverName;
+    }
 }
