@@ -211,6 +211,7 @@ function selectContact(element,receiverName){
         element.classList.toggle("selected");
         previousContact = element;
         receiver = receiverName;
+        getUsers()
         if(messagePrivacy === "public"){
             sendingTo.innerHTML=`Enviando para ${receiver} (publicamente)`
         }else{
