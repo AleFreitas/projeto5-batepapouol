@@ -32,18 +32,24 @@ function postUserName() {
     //se existir atualiza userName e chama a função de novo
 }
 function userDontExists(){
+    //keeps the user online
     setInterval(function(){
-        const keepUser = axios.post("https://mock-api.driven.com.br/api/v6/uol/status",user)
+        const keepUser = axios.post("https://mock-api.driven.com.br/api/v6/uol/status",user);
+        keepUser.catch(userLeft)
     },5000)
     //get messages every 3 seconds
     setInterval(function(){
         let messageHtml = ""
         getMessages();
     },3000)
-    //get users every 3 seconds
+    //get users every 10 seconds
     setInterval(function(){
         getUsers();
-    },3000)
+    },10000)
+}
+function userLeft(){
+    alert("Você perdeu a conexão com a sala");
+    window.location.reload()
 }
 function userAlreadyExists() {
     userName = prompt("Este nome está sendo usado, insira um nome válido");
@@ -57,7 +63,7 @@ function getMessages() {
 }
 //constroi as mensagens em uma variavel messageHtml
 function buildMessages(response){
-    messageHtml = "";
+    messageHtml = "<ion-icon name='arrow-down-circle-sharp' onclick='scrollDown()'></ion-icon>";
     for(i=0;i<response.data.length;i++){
         if(response.data[i].type === "status"){
             messageHtml+=`
@@ -100,6 +106,10 @@ function showMessages(){
 function didntFindMessages(response){
     alert("Não foi possivel obter as mensagens do servidor")
 }
+function scrollDown(){
+    scrollMessages = true;
+    getMessages();
+}
 function sendMessage(){
     messageText = inputValue.value;
     if(messagePrivacy === "public"){
@@ -108,6 +118,7 @@ function sendMessage(){
         userMessage = {from:userName,to:receiver,text:messageText,type:"private_message"}
     }
     const message = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages",userMessage);
+    message.catch(userLeft);
     inputValue.value = "";
     scrollMessages = true;
 }

@@ -5,6 +5,12 @@ body > section{
     width: 100%;
     background-color: #f3f3f3;
     overflow:scroll;
+}body > section > ion-icon{
+    position:fixed;
+    z-index:2;
+    left:90%;
+    top:88%;
+    font-size:25px;
 }.message{
     max-height:100%;
     max-width:100%;
