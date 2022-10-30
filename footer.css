@@ -50,3 +50,13 @@ footer ion-icon{
     margin-left:5%;
     color:#505050;
 }
+@media(max-width: 354px){
+    footer textarea{
+        height:20px;
+    }
+}
+@media(max-width: 202px){
+    .sending-to{
+        font-size:10px;
+    }
+}
