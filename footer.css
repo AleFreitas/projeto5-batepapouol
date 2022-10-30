@@ -2,7 +2,7 @@ footer{
     position:fixed;
     bottom:0px;
     left:0px;
-    height: 80px;
+    height: 85px;
     width: 100%;
     background-color: #ffffff;
     display:flex !important;
@@ -39,6 +39,7 @@ footer ion-icon{
     display:flex;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: flex-end;
 }.sending-to{
     font-family: 'Roboto',sans-serif;
     font-size: 14px;
