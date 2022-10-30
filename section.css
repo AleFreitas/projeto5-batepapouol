@@ -6,9 +6,8 @@ body > section{
     background-color: #f3f3f3;
     overflow:scroll;
 }.message{
-    max-height:600px;
+    max-height:100%;
     max-width:100%;
-    width: 100%;
     display: flex;
     text-align: left;
     align-items: center;
@@ -20,6 +19,7 @@ body > section{
     line-height: 16px;
     padding-top: 12px;
     padding-bottom: 12px;
+    overflow-wrap: anywhere;
     overflow-y:scroll;
 }.status{
     background-color:#dcdcdc;
