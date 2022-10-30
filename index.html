@@ -32,8 +32,13 @@
             <ion-icon name="arrow-down-circle-sharp" onclick="scrollDown()"></ion-icon>
         </section>
         <footer>
-            <textarea placeholder="Escreva aqui" wrap="hard"></textarea>
-            <button onclick="sendMessage()">
+            <div class="input-texts">
+                <textarea placeholder="Escreva aqui" wrap="hard"></textarea>
+                <p class="sending-to">
+                    Enviando para Todos (publicamente)
+                </p>
+            </div>
+                <button onclick="sendMessage()">
                 <ion-icon name="paper-plane-outline"></ion-icon>
             </button>
         </footer>

@@ -5,6 +5,7 @@ const section = document.querySelector("section");
 const userSection = document.querySelector(".contact-list");
 const sideMenu = document.querySelector(".sidemenu-back");
 const inputValue = document.querySelector("textarea");
+const sendingTo = document.querySelector(".sending-to");
 
 //contains who will receive this message
 let receiver = "Todos";
@@ -194,10 +195,12 @@ function togglePrivacy(type){
         messagePrivacy = "public"
         choosePublic.classList.toggle("hidden")
         choosePrivate.classList.toggle("hidden")
+        sendingTo.innerHTML=`Enviando para ${receiver} (publicamente)`
     }else{
         messagePrivacy = "private"
         choosePublic.classList.toggle("hidden")
         choosePrivate.classList.toggle("hidden")
+        sendingTo.innerHTML=`Enviando para ${receiver} (reservadamente)`
     }
 }
 function selectContact(element,receiverName){
@@ -206,5 +209,10 @@ function selectContact(element,receiverName){
         element.classList.toggle("selected");
         previousContact = element;
         receiver = receiverName;
+        if(messagePrivacy === "public"){
+            sendingTo.innerHTML=`Enviando para ${receiver} (publicamente)`
+        }else{
+            sendingTo.innerHTML=`Enviando para ${receiver} (reservadamente)`
+        }
     }
 }
