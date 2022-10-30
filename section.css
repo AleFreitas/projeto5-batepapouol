@@ -9,7 +9,7 @@ body > section{
     position:fixed;
     z-index:2;
     left:90%;
-    top:88%;
+    bottom:90px;
     font-size:25px;
 }.message{
     max-height:100%;
