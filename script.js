@@ -76,7 +76,7 @@ function buildMessages(response){
             </div>
             `;
         }
-        else if(response.data[i].type === "private_message"){
+        else if((response.data[i].type === "private_message") && ((userName === response.data[i].to) || (userName === response.data[i].from))){
             messageHtml+=`
             <div class="message private-message message${i}">
                 <p>
@@ -100,12 +100,12 @@ function showMessages(){
 function didntFindMessages(response){
     alert("Não foi possivel obter as mensagens do servidor")
 }
-function sendMessageToAll(){
+function sendMessage(){
     messageText = inputValue.value;
     if(messagePrivacy === "public"){
-        userMessage = {from:userName,to:"Todos",text:messageText,type:"message"}
+        userMessage = {from:userName,to:receiver,text:messageText,type:"message"}
     }else{
-        userMessage = {from:userName,to:"Todos",text:messageText,type:"private_message"}
+        userMessage = {from:userName,to:receiver,text:messageText,type:"private_message"}
     }
     const message = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages",userMessage);
     inputValue.value = "";
@@ -191,8 +191,6 @@ function togglePrivacy(type){
 }
 function selectContact(element,receiverName){
     if(previousContact !== element){
-        console.log(previousContact)
-        console.log(previousContact.classList)
         previousContact.classList.toggle("selected")
         element.classList.toggle("selected");
         previousContact = element;
