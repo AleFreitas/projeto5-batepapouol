@@ -6,7 +6,6 @@ const userSection = document.querySelector(".contact-list");
 const sideMenu = document.querySelector(".sidemenu-back");
 const inputValue = document.querySelector("textarea");
 const sendingTo = document.querySelector(".sending-to");
-
 //contains who will receive this message
 let receiver = "Todos";
 //contains message privacy value
@@ -23,6 +22,7 @@ let scrollMessages = true;
 let previousContact = document.querySelector(".contact.Todos")
 
 postUserName()
+getUsers()
 function postUserName() {
     //tenta postar o nome do usuário
     user = { name: userName }
@@ -105,7 +105,9 @@ function showMessages(){
     }
 }
 function didntFindMessages(response){
-    alert("Não foi possivel obter as mensagens do servidor")
+    alert("Não foi possivel obter as mensagens do servidor");
+    window.location.reload()
+
 }
 function scrollDown(){
     scrollMessages = true;
