@@ -34,6 +34,7 @@ footer ion-icon{
     height:35px;
     border-color: #e6e5e5;
 }.input-texts{
+    height:100%;
     width:80%;
     display:flex;
     flex-direction: column;
