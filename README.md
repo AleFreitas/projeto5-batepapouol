@@ -8,7 +8,7 @@ online or interact with people privately for as long as they are also online
 ## How to access?
 follow this link : https://alefreitas.github.io/projeto5-batepapouol/
 ## This project uses:
-- axios API requests\
-- HTML\
-- css\
-- javascript\
+- axios API requests
+- HTML
+- css
+- javascript
