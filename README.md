@@ -1,5 +1,5 @@
 # Bate papo UOL
-this is a online chat project for mobile that uses a Driven API to connect people\
+this is a online chatroom project for mobile that uses a Driven API to connect people\
 the idea is to make a basic website capable of sending messages to the API as well\
 as getting messages from the database in a simple way.
 ## How to use it?
