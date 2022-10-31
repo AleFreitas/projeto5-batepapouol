@@ -1,4 +1,5 @@
 let userName = prompt("Insira seu nome de usuário");
+//ALL QUERY SELECTORS USED
 const choosePublic = document.querySelector(".public");
 const choosePrivate = document.querySelector(".private");
 const section = document.querySelector("section");
@@ -23,15 +24,14 @@ let previousContact = document.querySelector(".contact.Todos")
 
 postUserName()
 getUsers()
+//try to post the chosen name in the API using a post request 
 function postUserName() {
-    //tenta postar o nome do usuário
     user = { name: userName }
     const promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants", user)
     promise.then(userDontExists);
     promise.catch(userAlreadyExists);
-    //se não existir alerta seja bem vindo
-    //se existir atualiza userName e chama a função de novo
 }
+//there is no user with the chosen name
 function userDontExists(){
     //keeps the user online
     setInterval(function(){
@@ -48,21 +48,23 @@ function userDontExists(){
         getUsers();
     },10000)
 }
-function userLeft(){
-    alert("Você perdeu a conexão com a sala");
-    window.location.reload()
-}
+//there is already a user with the chosen name
 function userAlreadyExists() {
     userName = prompt("Este nome está sendo usado, insira um nome válido");
     postUserName()
 }
-//busca as mensagens para mostrar
+//the user has left the room
+function userLeft(){
+    alert("Você perdeu a conexão com a sala");
+    window.location.reload()
+}
+//sends a get request to the API to get all messages
 function getMessages() {
     const messages = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
     messages.then(buildMessages)
     messages.catch(didntFindMessages)
 }
-//constroi as mensagens em uma variavel messageHtml
+//build all messages html divs in a single variable
 function buildMessages(response){
     messageHtml = "<ion-icon name='arrow-down-circle-sharp' onclick='scrollDown()'></ion-icon>";
     for(i=0;i<response.data.length;i++){
@@ -96,6 +98,7 @@ function buildMessages(response){
     }
     showMessages();
 }
+//puts all divs of messages into section.innerHTML
 function showMessages(){
     section.innerHTML=messageHtml
     let showThisMessage = document.querySelector(".message"+lastMessage);
@@ -104,15 +107,18 @@ function showMessages(){
         showThisMessage.scrollIntoView();
     }
 }
+//error on getMessages()
 function didntFindMessages(response){
     alert("Não foi possivel obter as mensagens do servidor");
     window.location.reload()
 
 }
+//tells the website to scroll down in the next interval of getMessages()
 function scrollDown(){
     scrollMessages = true;
     getMessages();
 }
+//sends a message with a post request to the API
 function sendMessage(){
     messageText = inputValue.value;
     if(messagePrivacy === "public"){
@@ -125,11 +131,13 @@ function sendMessage(){
     inputValue.value = "";
     scrollMessages = true;
 }
+//sends a get request to the API to get online users
 function getUsers() {
     //retorna os usuários ativos
     const users = axios.get("https://mock-api.driven.com.br/api/v6/uol/participants");
     users.then(buildUsersList);
 }
+//build a variable with all online users html divs and call showUsers()
 function buildUsersList(response){
     if(receiver === "Todos"){
         userList=`
@@ -185,13 +193,16 @@ function buildUsersList(response){
     }
     showUsers()
 }
+//show online Users on side menu
 function showUsers(){
     userSection.innerHTML=userList
 
 }
+//hide and show side menu
 function toggleSideMenu(){
     sideMenu.classList.toggle("hidden")
 }
+//toggles privacy options
 function togglePrivacy(type){
     if(type === "public"){
         messagePrivacy = "public"
@@ -205,6 +216,7 @@ function togglePrivacy(type){
         sendingTo.innerHTML=`Enviando para ${receiver} (reservadamente)`
     }
 }
+//selects a online user
 function selectContact(element,receiverName){
     if(previousContact !== element){
         previousContact.classList.toggle("selected")
