@@ -50,7 +50,7 @@
                     Escolha um contato para enviar mensagem:
                 </p>
                 <section class="contact-list">
-                    <div class="contact Todos selected" onclick="selectContact(this)">
+                    <div data-identifier="participant" class="contact Todos selected" onclick="selectContact(this)">
                         <button class="contact-button">
                             <ion-icon name="people"></ion-icon>
                             <p>
@@ -64,7 +64,7 @@
                     Escolha a visibilidade:
                 </p>
                 <section>
-                    <div class="privacy-option" onclick="togglePrivacy('public')">
+                    <div class="privacy-option" data-identifier="visibility" onclick="togglePrivacy('public')">
                         <button class="privacy-button">
                             <ion-icon name="lock-open"></ion-icon>
                             <p>
@@ -73,7 +73,7 @@
                         </button>
                         <ion-icon class="check public" name="checkmark-sharp"></ion-icon>
                     </div>
-                    <div class="privacy-option" onclick="togglePrivacy('private')">
+                    <div class="privacy-option" data-identifier="visibility" onclick="togglePrivacy('private')">
                         <button class="privacy-button">
                             <ion-icon name="lock-closed"></ion-icon>
                             <p>

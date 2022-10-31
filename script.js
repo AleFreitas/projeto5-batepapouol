@@ -141,7 +141,7 @@ function getUsers() {
 function buildUsersList(response){
     if(receiver === "Todos"){
         userList=`
-        <div class="contact Todos selected" onclick="selectContact(this,'Todos')">
+        <div class="contact Todos selected" data-identifier="participant" onclick="selectContact(this,'Todos')">
             <button class="contact-button">
                 <ion-icon name="people"></ion-icon>
                 <p>
@@ -153,7 +153,7 @@ function buildUsersList(response){
         `
     }else{
         userList=`
-        <div class="contact Todos" onclick="selectContact(this,'Todos')">
+        <div class="contact Todos" data-identifier="participant" onclick="selectContact(this,'Todos')">
             <button class="contact-button">
                 <ion-icon name="people"></ion-icon>
                 <p>
@@ -167,7 +167,7 @@ function buildUsersList(response){
     for (i=0;i<response.data.length;i++){
         if(receiver === response.data[i].name){
             userList+=`
-            <div class="contact ${response.data[i].name} selected" onclick="selectContact(this,'${response.data[i].name}')">
+            <div class="contact ${response.data[i].name} selected" data-identifier="participant" onclick="selectContact(this,'${response.data[i].name}')">
                 <button class="contact-button">
                     <ion-icon name="person-circle"></ion-icon>
                     <p>
@@ -179,7 +179,7 @@ function buildUsersList(response){
             `
         }else{
             userList+=`
-            <div class="contact ${response.data[i].name}" onclick="selectContact(this,'${response.data[i].name}')">
+            <div class="contact ${response.data[i].name}" data-identifier="participant" onclick="selectContact(this,'${response.data[i].name}')">
                 <button class="contact-button">
                     <ion-icon name="person-circle"></ion-icon>
                     <p>
