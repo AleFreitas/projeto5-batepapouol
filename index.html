@@ -26,19 +26,19 @@
     <body>
         <header>
             <img src="logo.png" alt="logo">
-            <ion-icon onclick="toggleSideMenu()" name="people"></ion-icon>
+            <ion-icon onclick="toggleSideMenu()" name="people" data-test="open-participants"></ion-icon>
         </header>
         <section>
             <ion-icon name="arrow-down-circle-sharp" onclick="scrollDown()"></ion-icon>
         </section>
         <footer>
             <div class="input-texts">
-                <textarea placeholder="Escreva aqui" wrap="hard"></textarea>
+                <textarea placeholder="Escreva aqui" wrap="hard" data-test="input-message"></textarea>
                 <p class="sending-to">
                     Enviando para Todos (publicamente)
                 </p>
             </div>
-            <button onclick="sendMessage()">
+            <button onclick="sendMessage()" data-test="send-message">
                 <ion-icon name="paper-plane-outline"></ion-icon>
             </button>
         </footer>
@@ -57,30 +57,30 @@
                                 Todos
                             </p>
                         </button>
-                        <ion-icon class="check" name="checkmark-sharp"></ion-icon>
+                        <ion-icon class="check" data-test="check" name="checkmark-sharp"></ion-icon>
                     </div>
                 </section>
                 <p>
                     Escolha a visibilidade:
                 </p>
                 <section>
-                    <div class="privacy-option" data-identifier="visibility" onclick="togglePrivacy('public')">
+                    <div class="privacy-option" data-test="public" onclick="togglePrivacy('public')">
                         <button class="privacy-button">
                             <ion-icon name="lock-open"></ion-icon>
                             <p>
                                 Público
                             </p>
                         </button>
-                        <ion-icon class="check public" name="checkmark-sharp"></ion-icon>
+                        <ion-icon class="check public" data-test="check" name="checkmark-sharp"></ion-icon>
                     </div>
-                    <div class="privacy-option" data-identifier="visibility" onclick="togglePrivacy('private')">
+                    <div class="privacy-option" data-test="private" onclick="togglePrivacy('private')">
                         <button class="privacy-button">
                             <ion-icon name="lock-closed"></ion-icon>
                             <p>
                                 Reservadamente
                             </p>
                         </button>
-                        <ion-icon class="check hidden private" name="checkmark-sharp"></ion-icon>
+                        <ion-icon class="check hidden private" data-test="check" name="checkmark-sharp"></ion-icon>
                     </div>
                 </section>
             </section>

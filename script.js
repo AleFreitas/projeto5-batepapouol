@@ -70,7 +70,7 @@ function buildMessages(response){
     for(i=0;i<response.data.length;i++){
         if(response.data[i].type === "status"){
             messageHtml+=`
-            <div class="message status message${i}">
+            <div class="message status message${i}" data-test="message">
                 <p>
                     <span class="time">(${response.data[i].time})</span> <span class="name">${response.data[i].from}</span> ${response.data[i].text}
                 </p>
@@ -78,7 +78,7 @@ function buildMessages(response){
             `;
         }else if(response.data[i].type === "message"){
             messageHtml+=`
-            <div class="message normal-message message${i}">
+            <div class="message normal-message message${i}" data-test="message">
                 <p>
                     <span class="time">(${response.data[i].time})</span> <span class="name">${response.data[i].from}</span> para <span class="name">${response.data[i].to}:</span> ${response.data[i].text}
                 </p>
@@ -87,7 +87,7 @@ function buildMessages(response){
         }
         else if((response.data[i].type === "private_message") && ((userName === response.data[i].to) || (userName === response.data[i].from))){
             messageHtml+=`
-            <div class="message private-message message${i}">
+            <div class="message private-message message${i}" data-test="message">
                 <p>
                     <span class="time">(${response.data[i].time})</span> <span class="name">${response.data[i].from}</span> reservadamente para <span class="name">${response.data[i].to}</span>: ${response.data[i].text}
                 </p>
@@ -141,52 +141,52 @@ function getUsers() {
 function buildUsersList(response){
     if(receiver === "Todos"){
         userList=`
-        <div class="contact Todos selected" data-identifier="participant" onclick="selectContact(this,'Todos')">
+        <div class="contact Todos selected" data-test="all" onclick="selectContact(this,'Todos')">
             <button class="contact-button">
                 <ion-icon name="people"></ion-icon>
                 <p>
                     Todos
                 </p>
             </button>
-            <ion-icon class="check" name="checkmark-sharp"></ion-icon>
+            <ion-icon class="check" name="checkmark-sharp" data-test="check"></ion-icon>
         </div>
         `
     }else{
         userList=`
-        <div class="contact Todos" data-identifier="participant" onclick="selectContact(this,'Todos')">
+        <div class="contact Todos" data-test="all" onclick="selectContact(this,'Todos')">
             <button class="contact-button">
                 <ion-icon name="people"></ion-icon>
                 <p>
                     Todos
                 </p>
             </button>
-            <ion-icon class="check" name="checkmark-sharp"></ion-icon>
+            <ion-icon class="check" name="checkmark-sharp" data-test="check"></ion-icon>
         </div>
         `
     }
     for (i=0;i<response.data.length;i++){
         if(receiver === response.data[i].name){
             userList+=`
-            <div class="contact ${response.data[i].name} selected" data-identifier="participant" onclick="selectContact(this,'${response.data[i].name}')">
+            <div class="contact ${response.data[i].name} selected" data-test="participant" onclick="selectContact(this,'${response.data[i].name}')">
                 <button class="contact-button">
                     <ion-icon name="person-circle"></ion-icon>
                     <p>
                         ${response.data[i].name}
                     </p>
                 </button>
-                <ion-icon class="check hidden" name="checkmark-sharp"></ion-icon>
+                <ion-icon class="check hidden" name="checkmark-sharp" data-test="check"></ion-icon>
             </div>
             `
         }else{
             userList+=`
-            <div class="contact ${response.data[i].name}" data-identifier="participant" onclick="selectContact(this,'${response.data[i].name}')">
+            <div class="contact ${response.data[i].name}" data-test="participant" onclick="selectContact(this,'${response.data[i].name}')">
                 <button class="contact-button">
                     <ion-icon name="person-circle"></ion-icon>
                     <p>
                         ${response.data[i].name}
                     </p>
                 </button>
-                <ion-icon class="check hidden" name="checkmark-sharp"></ion-icon>
+                <ion-icon class="check hidden" name="checkmark-sharp" data-test="check"></ion-icon>
             </div>
             `
         }
